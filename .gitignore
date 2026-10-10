@@ -1,0 +1,31 @@
+# Бинарники и результаты сборки
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/bin/
+/dist/
+
+# Тесты и покрытие
+*.test
+*.out
+coverage.*
+
+# Go workspace (локальные настройки)
+go.work
+go.work.sum
+
+# Секреты и локальная конфигурация (пароли к БД и RabbitMQ)
+.env
+.env.*
+!.env.example
+
+# IDE и редакторы
+.idea/
+.vscode/
+*.swp
+
+# Мусор ОС
+.DS_Store
+Thumbs.db
