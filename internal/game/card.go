@@ -24,7 +24,7 @@ const (
 type Metric int
 
 const (
-	MetricIntensity Metric = iota
+	MetricIntelligence Metric = iota
 	MetricDexterity
 	MetricLuck
 	MetricStrength
@@ -54,9 +54,9 @@ func ParseMetric(n int) (Metric, error) {
 func (c Card) CompareBy(other Card, m Metric) Outcome {
 	a, b := c.Stats[m], other.Stats[m]
 	switch {
-	case a < b:
-		return OutcomeFirstWins
 	case a > b:
+		return OutcomeFirstWins
+	case a < b:
 		return OutcomeSecondWins
 	default:
 		return OutcomeDraw
