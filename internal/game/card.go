@@ -51,6 +51,19 @@ func ParseMetric(n int) (Metric, error) {
 	return Metric(n), nil
 }
 
+func (o Outcome) String() string {
+	switch o {
+	case OutcomeDraw:
+		return "Draw"
+	case OutcomeFirstWins:
+		return "First Wins"
+	case OutcomeSecondWins:
+		return "Second Wins"
+	default:
+		return "Unknown"
+	}
+}
+
 func (c Card) CompareBy(other Card, m Metric) Outcome {
 	a, b := c.Stats[m], other.Stats[m]
 	switch {

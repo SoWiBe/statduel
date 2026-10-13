@@ -16,6 +16,20 @@ func TestCard_CompareBy(t *testing.T) {
 			Card{Stats: [5]int{250}},
 			OutcomeFirstWins,
 		},
+		{
+			"second is winner",
+			MetricDexterity,
+			Card{Stats: [5]int{499, 299, 499, 499, 499}},
+			Card{Stats: [5]int{499, 499, 499, 499, 499}},
+			OutcomeSecondWins,
+		},
+		{
+			"draw",
+			MetricStrength,
+			Card{Stats: [5]int{499, 499, 499, 499, 499}},
+			Card{Stats: [5]int{499, 499, 499, 499, 499}},
+			OutcomeDraw,
+		},
 	}
 
 	for _, tt := range tests {
