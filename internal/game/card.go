@@ -3,13 +3,14 @@ package game
 import (
 	"errors"
 	"fmt"
+	"strings"
 )
 
 type Card struct {
-	ID     int
-	Name   string
-	Rarity CardRarity
-	Stats  Stats
+	id     int
+	name   string
+	rarity CardRarity
+	stats  Stats
 }
 
 type CardRarity int
@@ -73,5 +74,12 @@ func (c Card) CompareBy(other Card, m Metric) Outcome {
 		return OutcomeSecondWins
 	default:
 		return OutcomeDraw
+	}
+}
+
+func NewCard(name string, rarity CardRarity) (Card, error) {
+	var errs []error
+	if strings.TrimSpace(name) == "" {
+		errs = append(errs, errors.New("empty name"))
 	}
 }
