@@ -66,7 +66,7 @@ func (o Outcome) String() string {
 }
 
 func (c Card) CompareBy(other Card, m Metric) Outcome {
-	a, b := c.Stats[m], other.Stats[m]
+	a, b := c.Stats(m), other.Stats(m)
 	switch {
 	case a > b:
 		return OutcomeFirstWins
@@ -77,9 +77,49 @@ func (c Card) CompareBy(other Card, m Metric) Outcome {
 	}
 }
 
-func NewCard(name string, rarity CardRarity) (Card, error) {
+func NewCard(name string, rarity CardRarity, s Stats) (Card, error) {
 	var errs []error
+
 	if strings.TrimSpace(name) == "" {
 		errs = append(errs, errors.New("empty name"))
 	}
+
+	if len(s) < 4 {
+		errs = append(errs, errors.New("too few stats"))
+	}
+
+	// TODO: допилить
+	//if errs != nil {
+	//	return (nil, errs)
+	//}
+
+}
+
+func (c Card) Stats(metric Metric) int {
+	return c.stats[metric]
+}
+
+func (c *Card) SetMetric(metric Metric, value int) bool {
+	if value <= 0 {
+		return false
+	}
+
+	c.stats[metric] = value
+	return true
+}
+
+func (c Card) Rarity() CardRarity {
+	return c.rarity
+}
+
+func (c *Card) SetRarity(rarity CardRarity) {
+	c.rarity = rarity
+}
+
+func (c Card) Name() string {
+	return c.name
+}
+
+func (c *Card) SetName(name string) {
+	c.name = name
 }
