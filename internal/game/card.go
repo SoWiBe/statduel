@@ -77,7 +77,7 @@ func (c Card) CompareBy(other Card, m Metric) Outcome {
 	}
 }
 
-func NewCard(name string, rarity CardRarity, s Stats) (Card, error) {
+func NewCard(name string, rarity CardRarity, s Stats) (Card, []error) {
 	var errs []error
 
 	if strings.TrimSpace(name) == "" {
@@ -88,11 +88,17 @@ func NewCard(name string, rarity CardRarity, s Stats) (Card, error) {
 		errs = append(errs, errors.New("too few stats"))
 	}
 
-	// TODO: допилить
-	//if errs != nil {
-	//	return (nil, errs)
-	//}
+	if len(errs) > 0 {
+		return Card{}, errs
+	}
 
+	var card Card = Card{
+		name:   name,
+		rarity: rarity,
+		stats:  s,
+	}
+
+	return card, errs
 }
 
 func (c Card) Stats(metric Metric) int {
