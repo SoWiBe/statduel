@@ -12,22 +12,22 @@ func TestCard_CompareBy(t *testing.T) {
 	}{
 		{"first is winner",
 			MetricIntelligence,
-			Card{Stats: [5]int{499}},
-			Card{Stats: [5]int{250}},
+			Card{stats: [5]int{499}},
+			Card{stats: [5]int{250}},
 			OutcomeFirstWins,
 		},
 		{
 			"second is winner",
 			MetricDexterity,
-			Card{Stats: [5]int{499, 299, 499, 499, 499}},
-			Card{Stats: [5]int{499, 499, 499, 499, 499}},
+			Card{stats: [5]int{499, 299, 499, 499, 499}},
+			Card{stats: [5]int{499, 499, 499, 499, 499}},
 			OutcomeSecondWins,
 		},
 		{
 			"draw",
 			MetricStrength,
-			Card{Stats: [5]int{499, 499, 499, 499, 499}},
-			Card{Stats: [5]int{499, 499, 499, 499, 499}},
+			Card{stats: [5]int{499, 499, 499, 499, 499}},
+			Card{stats: [5]int{499, 499, 499, 499, 499}},
 			OutcomeDraw,
 		},
 	}
